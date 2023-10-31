@@ -6,6 +6,7 @@
 (use-package fontaine
   :ensure t
   :demand t
+  :if (display-graphic-p)
   :init
   (setq fontaine-presets
         `((regular
@@ -66,11 +67,12 @@
 (defun bg/disable-themes ()
   "Disable all enabled custom themes."
   (interactive)
-    (mapc #'disable-theme custom-enabled-themes))
+  (mapc #'disable-theme custom-enabled-themes))
 
 
 (use-package ef-themes
   :ensure   t
+  :if (display-graphic-p)
   :demand t
   :custom
   (ef-themes-region '(intense no-extend neutral))
@@ -81,20 +83,20 @@
   (defun bg/ef-themes-hl-todo-faces ()
     "Configure `hl-todo-keyword-faces' with Ef themes colors."
     (ef-themes-with-colors
-     (setq hl-todo-keyword-faces
-           `(("HOLD" . ,yellow)
-             ("TODO" . ,red)
-             ("NEXT" . ,blue)
-             ("OKAY" . ,green-warmer)
-             ("DONT" . ,yellow-warmer)
-             ("FAIL" . ,red-warmer)
-             ("BUG" . ,red-warmer)
-             ("DONE" . ,green)
-             ("NOTE" . ,blue-warmer)
-             ("HACK" . ,cyan)
-             ("FIXME" . ,red-warmer)
-             ("XXX" . ,red-warmer)
-             ("DEPRECATED" . ,yellow)))))
+      (setq hl-todo-keyword-faces
+            `(("HOLD" . ,yellow)
+              ("TODO" . ,red)
+              ("NEXT" . ,blue)
+              ("OKAY" . ,green-warmer)
+              ("DONT" . ,yellow-warmer)
+              ("FAIL" . ,red-warmer)
+              ("BUG" . ,red-warmer)
+              ("DONE" . ,green)
+              ("NOTE" . ,blue-warmer)
+              ("HACK" . ,cyan)
+              ("FIXME" . ,red-warmer)
+              ("XXX" . ,red-warmer)
+              ("DEPRECATED" . ,yellow)))))
   (bg/disable-themes)
   :config
   (ef-themes-select 'ef-elea-dark))
@@ -141,4 +143,4 @@
                             "__" "::"))
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
-    (global-ligature-mode t))
+  (global-ligature-mode t))

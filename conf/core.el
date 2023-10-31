@@ -74,7 +74,7 @@
   (prescient-sort-full-matches-first t)
   (prescient-sort-length-enable t)
   :config
-    (prescient-persist-mode +1))
+  (prescient-persist-mode +1))
 
 
 (use-package vertico
@@ -100,6 +100,7 @@
   :init
   (vertico-mode)
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy))
+
 
 
 (use-package vertico-prescient
@@ -312,7 +313,7 @@
          (before-save . whitespace-cleanup))
   :config
   (setq whitespace-line-column 115)
-    (setq whitespace-style '(face tabs empty trailing lines-tail)))
+  (setq whitespace-style '(face tabs empty trailing lines-tail)))
 
 
 
@@ -361,59 +362,65 @@
   ("M-g M-c" . avy-goto-char-timer)
   ("M-g M-g" . avy-goto-line)
   :config
-  (setq avy-background t)
-  (defun avy-action-helpful (pt)
-    (save-excursion
-      (goto-char pt)
-      (helpful-at-point))
-    (select-window
-     (cdr (ring-ref avy-ring 0)))
-    t)
-  (setf (alist-get ?H avy-dispatch-alist) 'avy-action-helpful))
+  (setq avy-background t
+        (defun avy-action-helpful (pt)
+          (save-excursion
+            (goto-char pt)
+            (helpful-at-point))
+          (select-window
+           (cdr (ring-ref avy-ring 0)))
+          t)
+        (setf (alist-get ?H avy-dispatch-alist) 'avy-action-helpful)))
 
 
-(use-package hideshow
+;; (use-package hideshow
+;;   :ensure t
+;;   :disabled nil
+;;   :hook
+;;   (prog-mode . hs-minor-mode)
+;;   :config
+;;   (defun kc/hs-cycle (&optional level)
+;;     (interactive "p")
+;;     (let (message-log-max
+;;           (inhibit-message t))
+;;       (if (= level 1)
+;;           (pcase last-command
+;;             ('hs-cycle
+;;              (hs-hide-level 1)
+;;              (setq this-command 'hs-cycle-children))
+;;             ('hs-cycle-children
+;;              ;; TODO: Fix this case. `hs-show-block' needs to be
+;;              ;; called twice to open all folds of the parent
+;;              ;; block.
+;;              (save-excursion (hs-show-block))
+;;              (hs-show-block)
+;;              (setq this-command 'hs-cycle-subtree))
+;;             ('hs-cycle-subtree
+;;              (hs-hide-block))
+;;             (_
+;;              (if (not (hs-already-hidden-p))
+;;                  (hs-hide-block)
+;;                (hs-hide-level 1)
+;;                (setq this-command 'hs-cycle-children))))
+;;         (hs-hide-level level)
+;;         (setq this-command 'hs-hide-level))))
+
+;;   (defun kc/hs-global-cycle ()
+;;     (interactive)
+;;     (pcase last-command
+;;       ('hs-global-cycle
+;;        (save-excursion (hs-show-all))
+;;        (setq this-command 'hs-global-show))
+;;       (_ (hs-hide-all))))
+;;   :bind
+;;   ("C-tab" . kc/hs-cycle)
+;;   ("C-f-<tab>" . kc/hs-global-cycle))
+
+(use-package yafolding
   :ensure t
-  :disabled nil
-  :hook
-  (prog-mode . hs-minor-mode)
-  :config
-  (defun kc/hs-cycle (&optional level)
-    (interactive "p")
-    (let (message-log-max
-          (inhibit-message t))
-      (if (= level 1)
-          (pcase last-command
-            ('hs-cycle
-             (hs-hide-level 1)
-             (setq this-command 'hs-cycle-children))
-            ('hs-cycle-children
-             ;; TODO: Fix this case. `hs-show-block' needs to be
-             ;; called twice to open all folds of the parent
-             ;; block.
-             (save-excursion (hs-show-block))
-             (hs-show-block)
-             (setq this-command 'hs-cycle-subtree))
-            ('hs-cycle-subtree
-             (hs-hide-block))
-            (_
-             (if (not (hs-already-hidden-p))
-                 (hs-hide-block)
-               (hs-hide-level 1)
-               (setq this-command 'hs-cycle-children))))
-        (hs-hide-level level)
-        (setq this-command 'hs-hide-level))))
+  :hook (prog-mode . yafolding-mode))
 
-  (defun kc/hs-global-cycle ()
-    (interactive)
-    (pcase last-command
-      ('hs-global-cycle
-       (save-excursion (hs-show-all))
-       (setq this-command 'hs-global-show))
-      (_ (hs-hide-all))))
-  :bind
-  ("C-tab" . kc/hs-cycle)
-  ("C-f-<tab>" . kc/hs-global-cycle))
+
 
 (use-package pulsar
   :ensure t
@@ -436,7 +443,7 @@
 (use-package expand-region
   :ensure t
   :bind
-    ("C-=" . #'er/expand-region))
+  ("C-=" . #'er/expand-region))
 
 
 (use-package consult
@@ -507,4 +514,4 @@
    consult-bookmark consult-recent-file consult-xref
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
-      :preview-key '(:debounce 0.4 any)))
+   :preview-key '(:debounce 0.4 any)))
