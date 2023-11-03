@@ -21,6 +21,9 @@
   '("core.el"
     "themes.el"
     "dev.el"
+    "clojure.el"
+    "org-config.el"
+    "utils.el"
     )
   )
 
@@ -45,12 +48,13 @@
  ;; If there is more than one, they won't work right.
  '(eglot-confirm-server-edits nil nil nil "Customized with use-package eglot")
  '(package-selected-packages
-   '(all-the-icons-completion all-the-icons-dired apheleia blackout cape cider clojure-mode consult consult-eglot
-                              corfu-prescient csv-mode ctrlf diff-hl doom-modeline ef-themes expand-region flycheck
-                              fontaine git-modes git-timemachine go-mode helpful highlight-indent-guides hl-todo
-                              jarchive kind-icon ligature marginalia markdown-mode multiple-cursors paredit pulsar
-                              rainbow-delimiters sql-indent treemacs-all-the-icons treemacs-icons-dired
-                              treemacs-magit undo-fu use-package vertico-prescient vundo which-key yaml-mode)))
+   '(all-the-icons-completion all-the-icons-dired apheleia blackout cape centaur-tabs cider clojure-mode consult
+                              consult-eglot corfu-prescient csv-mode ctrlf diff-hl doom-modeline ef-themes
+                              expand-region flycheck fontaine git-modes git-timemachine go-mode helpful
+                              highlight-indent-guides hl-todo jarchive kind-icon ligature marginalia markdown-mode
+                              multiple-cursors org-appear org-bars origami paredit pulsar rainbow-delimiters
+                              sql-indent tempel treemacs-all-the-icons treemacs-icons-dired treemacs-magit undo-fu
+                              use-package vertico-prescient vundo which-key yafolding yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
