@@ -175,7 +175,7 @@
   (go-mode . eglot-ensure)
   :config
   (jarchive-setup)
-  (jarchive-patch-eglot)
+  ;; (jarchive-patch-eglot)
 
   :custom
   (eglot-autoshutdown t)
